@@ -1,0 +1,35 @@
+.form {
+    font-size: 1.25rem;
+    width: 35%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    margin: 1rem auto;
+}
+.inpRow {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem auto;
+}
+.submit {
+    background-color: rgb(58, 199, 204);
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: auto;
+    cursor: pointer;
+}
+.img {
+    width: 10rem;
+    height: 10rem;
+    margin-left: 31%;
+}
+.inpRow > input[type="checkbox"] {
+    margin-right: 36%;
+}
+.inpRow > input[type="file"] {
+    margin-right: -19%;
+}
