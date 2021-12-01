@@ -1,23 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Form.module.css";
+import axios from "axios";
 
-const Form = ({onFormSubmit}) => {
-    const [formState, setFormState] = useState({
-        name: "",
-        age: "",
-        address: "",
-        departement: "",
-        salary: "",
-        maritalState: false,
-        profilePhoto: ""
-    });
+const intial = {
+    name: "",
+    age: "",
+    address: "",
+    departement: "",
+    salary: "",
+    maritalState: false,
+    profilePhoto: ""
+};
+
+const Form = ({setIsUpdated}) => {
     const [ imageSrc, setImageSrc ] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [formState, setFormState] = useState(intial);
     const imageRef = useRef(null);
 
     const handleFormUpdate = (e) => {
         const { name, value, type, checked } = e.target;
         let val = type === "checkbox" ? checked : value;
-        if ( name === "salary" && Number.isNaN(Number(e.target.value) ) ) return; 
+        if ( ( name === "salary" || name === "age" ) && Number.isNaN(Number(e.target.value) ) ) return; 
         setFormState({
             ...formState,
             [name]:val
@@ -26,8 +31,20 @@ const Form = ({onFormSubmit}) => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        // onFormSubmit(formState);
-        console.log(formState)
+        setIsLoading(true);
+        axios.post("http://localhost:3000/profile", formState )
+        .then( res => {
+            setFormState(intial);
+            setImageSrc("");
+        })
+        .catch( err => {
+            setIsError(true);
+            console.log(err);
+        })
+        .finally( () => {
+            setIsLoading(false);
+            setIsUpdated(val=> !val);
+        } )
     } 
 
     const handlePhotoChange = (e) => {
@@ -47,44 +64,56 @@ const Form = ({onFormSubmit}) => {
     
     return (
         <form className={styles.form} onSubmit={handleFormSubmit}>
-            <div className={styles.inpRow} >
-                <label htmlFor="name">Name</label>
-                <input type="text" onChange={handleFormUpdate} name="name" value={formState.name} required={true}/>
-            </div>
-            <div className={styles.inpRow} >
-                <label htmlFor="address">Address</label>
-                <input type="text" onChange={handleFormUpdate} name="address" value={formState.address} />
-            </div>
-            <div className={styles.inpRow} >
-                <label htmlFor="department">Department</label>
-                <select onChange={handleFormUpdate} name="department" required={true}>
-                    <option value="">Please choose an option</option>
-                    <option value="management">Mangement</option>
-                    <option value="operations">Operations</option>
-                    <option value="it">IT</option>
-                    <option value="resources">Resources</option>
-                </select>
-            </div>
-            <div className={styles.inpRow} >
-                <label htmlFor="salary">Salary</label>
-                <input type="text" onChange={handleFormUpdate} name="salary" value={formState.salary} required={true}/>
-            </div>
-            <div className={styles.inpRow} >
-                <label htmlFor="maritalStatus">Married</label>
-                <input type="checkbox" onChange={handleFormUpdate} name="maritalStatus" value={formState.maritalState} required={true} />
-            </div>
-            <div className={styles.inpRow} >
-                <label htmlFor="profile">Profile Photo</label>
-                <input type="file" onChange={handlePhotoChange} name="profilePhoto" ref={imageRef}/>
-            </div>
-            <div className={styles.inpRow}>
-                { imageSrc ? (
-                    <img src={imageSrc} alt="profile" className={styles.img}/>
-                ) : (
-                    <></>
-                )}
-            </div>
-            <input type="submit" value="Submit" className={styles.submit} />
+            { isLoading ? (
+                <div>...Loading</div>
+            ) : isError ? (
+                <div>...Error</div>
+            ) : (
+                <div>
+                    <div className={styles.inpRow} >
+                        <label htmlFor="name">Name</label>
+                        <input type="text" onChange={handleFormUpdate} name="name" value={formState.name} required={true}/>
+                    </div>
+                    <div className={styles.inpRow} >
+                        <label htmlFor="age">Age ( in years )</label>
+                        <input type="text" onChange={handleFormUpdate} name="age" value={formState.age} required={true}/>
+                    </div>
+                    <div className={styles.inpRow} >
+                        <label htmlFor="address">Address</label>
+                        <input type="text" onChange={handleFormUpdate} name="address" value={formState.address} />
+                    </div>
+                    <div className={styles.inpRow} >
+                        <label htmlFor="department">Department</label>
+                        <select onChange={handleFormUpdate} name="department" required={true}>
+                            <option value="">Please choose an option</option>
+                            <option value="management">Mangement</option>
+                            <option value="operations">Operations</option>
+                            <option value="it">IT</option>
+                            <option value="resources">Resources</option>
+                        </select>
+                    </div>
+                    <div className={styles.inpRow} >
+                        <label htmlFor="salary">Salary</label>
+                        <input type="text" onChange={handleFormUpdate} name="salary" value={formState.salary} required={true}/>
+                    </div>
+                    <div className={styles.inpRow} >
+                        <label htmlFor="maritalStatus">Married</label>
+                        <input type="checkbox" onChange={handleFormUpdate} name="maritalStatus" value={formState.maritalState} />
+                    </div>
+                    <div className={styles.inpRow} >
+                        <label htmlFor="profile">Profile Photo</label>
+                        <input type="file" onChange={handlePhotoChange} name="profilePhoto" ref={imageRef}/>
+                    </div>
+                    <div className={styles.inpRow}>
+                        { imageSrc ? (
+                            <img src={imageSrc} alt="profile" className={styles.img}/>
+                        ) : (
+                            <></>
+                        )}
+                    </div>
+                    <input type="submit" value="Submit" className={styles.submit} />
+                </div>
+            )}
         </form>
     )
 }
