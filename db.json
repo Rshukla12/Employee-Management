@@ -4,7 +4,6 @@
       "name": "Ravi Shukla",
       "age": "21",
       "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
-      "departement": "",
       "salary": "130000",
       "maritalState": false,
       "profilePhoto": "",
@@ -13,48 +12,43 @@
     },
     {
       "name": "Ravi Shukla",
-      "age": "22",
+      "age": "21",
       "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
-      "departement": "",
       "salary": "130000",
       "maritalState": false,
       "profilePhoto": "",
-      "department": "operations",
-      "id": 6
-    },
-    {
-      "name": "Ravi Shukla",
-      "age": "23",
-      "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
-      "departement": "",
-      "salary": "122000",
-      "maritalState": false,
-      "profilePhoto": "",
-      "department": "operations",
-      "id": 7
+      "department": "it",
+      "id": 11
     },
     {
       "name": "Ravi Shukla",
       "age": "22",
       "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
-      "departement": "",
       "salary": "130000",
       "maritalState": false,
       "profilePhoto": "",
       "department": "resources",
-      "id": 8
+      "id": 12
+    },
+    {
+      "name": "Ravi Shukla",
+      "age": "21",
+      "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
+      "salary": "130000",
+      "maritalState": false,
+      "profilePhoto": "",
+      "department": "it",
+      "id": 13
     },
     {
       "name": "Ravi Shukla",
       "age": "22",
       "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
-      "departement": "",
-      "salary": "220000",
+      "salary": "130000",
       "maritalState": false,
       "profilePhoto": "",
       "department": "resources",
-      "maritalStatus": true,
-      "id": 9
+      "id": 14
     }
   ]
 }

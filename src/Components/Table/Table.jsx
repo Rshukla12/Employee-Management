@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TableItem from "./TableItem";
 import style from "./Table.module.css";
 import axios from "axios";
+import Pagination from "../Pagination";
 
 const Table = ({isUpdated}) => {
     const [data, setData] = useState([]);
@@ -9,14 +10,19 @@ const Table = ({isUpdated}) => {
     const [isError, setIsError] = useState(false);
     const [sorting, setSorting] = useState("default");
     const [filter, setFilter] = useState("default");
+    const [page, setPage] = useState(1);
+    const [totalPage, setTotalPage] = useState(1);
 
     useEffect( () => {
-        fetchData({sorting, filter});
-    }, [isUpdated, sorting, filter])
+        fetchData({sorting, filter, page});
+    }, [isUpdated, sorting, filter, page])
 
-    const fetchData = ({sorting, filter}) => {
+    const fetchData = ({sorting, filter, page}) => {
         setIsLoading(true);
-        const options = {};
+        const options = {
+            page: page,
+            _limit: 5
+        };
         if ( sorting !== "default" ) {
             options._sort = "salary";
             options._order = sorting;
@@ -27,7 +33,10 @@ const Table = ({isUpdated}) => {
         axios.get("http://localhost:3000/profile", {
             params: options
         })
-        .then( res => setData(res.data) )
+        .then( res => {
+            setTotalPage( Math.ceil(res.headers["x-total-count"]/5)  )
+            setData(res.data) 
+        })
         .catch( err => {
             console.log(err);
             setIsError(true);
@@ -38,7 +47,7 @@ const Table = ({isUpdated}) => {
     const handleDeleteUser = (id) => {
         setIsLoading(true);
         axios.delete(`http://localhost:3000/profile/${id}`)
-        .then( () => fetchData() )
+        .then( () => fetchData({sorting, filter, page}) )
         .catch( err => {
             console.log(err);
             setIsError(true);
@@ -102,6 +111,7 @@ const Table = ({isUpdated}) => {
                             )
                         }
                     </div>
+                    <Pagination totalPage={totalPage} currPage={page} setPage={setPage} />
                 </div>
             )}
         </div>
