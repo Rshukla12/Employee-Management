@@ -1,0 +1,16 @@
+
+
+.tableItem, .tableHead {
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: 1rem auto;
+    border: 1px solid gray;
+}
+.tableItem > *, .tableHead > * {
+    width: 7rem;
+}
+.tableHead {
+    padding: 0.5rem 0rem;
+    margin: 1rem auto;
+}

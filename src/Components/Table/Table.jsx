@@ -50,11 +50,12 @@ const Table = ({isUpdated}) => {
                 <div>...Error</div>
             ) : (
                 <div>
-                    <form>
+                    <div className={style.tableHead}>
+                        <div>Name</div>
+                        <div>Age</div>
                         <div>
-                            <label htmlFor="filter">Department</label>
                             <select name="filter" onChange={handleChange} >
-                                <option value="default">Default</option>
+                                <option value="default">Department</option>
                                 <option value="management">Mangement</option>
                                 <option value="operations">Operations</option>
                                 <option value="it">IT</option>
@@ -62,14 +63,15 @@ const Table = ({isUpdated}) => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="sorting">Sort By Salary</label>
                             <select name="sorting" onChange={handleChange} >
-                                <option value="default">Default</option>
+                                <option value="default">Salary ( Default )</option>
                                 <option value="asc">Lowest First</option>
                                 <option value="desc">Highest First</option>
                             </select>
                         </div>
-                    </form>
+                        <div>Marital Status</div>
+                        <div>Action</div>
+                    </div>
                     <div>
                         {data.length > 0 ? 
                             data
