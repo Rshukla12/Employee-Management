@@ -7,6 +7,7 @@ const EmployeeManagement = () => {
   
     return (
       <>
+        <h1>Employee Management</h1>
         <Form setIsUpdated={setIsUpdated}/>
         <Table isUpdated={isUpdated}/>
       </>

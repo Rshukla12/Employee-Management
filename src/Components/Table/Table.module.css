@@ -1,4 +1,10 @@
-
+.table {
+    border: 1px solid gray;
+    width: 90%;
+    margin: auto;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
 
 .tableItem, .tableHead {
     display: flex;
@@ -6,11 +12,11 @@
     width: 90%;
     margin: 1rem auto;
     border: 1px solid gray;
+    padding: 0.5rem 0rem;
 }
 .tableItem > *, .tableHead > * {
     width: 7rem;
 }
 .tableHead {
-    padding: 0.5rem 0rem;
-    margin: 1rem auto;
+    font-size: 1.15rem;
 }

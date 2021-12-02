@@ -6,7 +6,7 @@ const intial = {
     name: "",
     age: "",
     address: "",
-    departement: "",
+    department: "",
     salary: "",
     maritalState: false,
     profilePhoto: ""
@@ -70,6 +70,7 @@ const Form = ({setIsUpdated}) => {
                 <div>...Error</div>
             ) : (
                 <div>
+                    <h2>Add new Employee</h2>
                     <div className={styles.inpRow} >
                         <label htmlFor="name">Name</label>
                         <input type="text" onChange={handleFormUpdate} name="name" value={formState.name} required={true}/>

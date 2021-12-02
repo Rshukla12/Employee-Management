@@ -11,12 +11,22 @@ const Table = ({isUpdated}) => {
     const [filter, setFilter] = useState("default");
 
     useEffect( () => {
-        fetchData();
-    }, [isUpdated])
+        fetchData({sorting, filter});
+    }, [isUpdated, sorting, filter])
 
-    const fetchData = () => {
+    const fetchData = ({sorting, filter}) => {
         setIsLoading(true);
-        axios.get("http://localhost:3000/profile")
+        const options = {};
+        if ( sorting !== "default" ) {
+            options._sort = "salary";
+            options._order = sorting;
+        }
+        if ( filter !== "default" ) {
+            options.department = filter;
+        }
+        axios.get("http://localhost:3000/profile", {
+            params: options
+        })
         .then( res => setData(res.data) )
         .catch( err => {
             console.log(err);
@@ -49,12 +59,13 @@ const Table = ({isUpdated}) => {
             ) : isError ? (
                 <div>...Error</div>
             ) : (
-                <div>
+                <div className={style.table}>
+                    <h2>Employee Details</h2>
                     <div className={style.tableHead}>
                         <div>Name</div>
                         <div>Age</div>
                         <div>
-                            <select name="filter" onChange={handleChange} >
+                            <select name="filter" value={filter} onChange={handleChange} >
                                 <option value="default">Department</option>
                                 <option value="management">Mangement</option>
                                 <option value="operations">Operations</option>
@@ -63,7 +74,7 @@ const Table = ({isUpdated}) => {
                             </select>
                         </div>
                         <div>
-                            <select name="sorting" onChange={handleChange} >
+                            <select name="sorting" value={sorting} onChange={handleChange} >
                                 <option value="default">Salary ( Default )</option>
                                 <option value="asc">Lowest First</option>
                                 <option value="desc">Highest First</option>
@@ -75,15 +86,15 @@ const Table = ({isUpdated}) => {
                     <div>
                         {data.length > 0 ? 
                             data
-                            .filter( user => {
-                                if ( filter === "default" ) return true;
-                                return user.department === filter; 
-                            })
-                            .sort( ( user1, user2 ) => {
-                                if ( sorting === "default" ) return 0;
-                                if ( sorting === "asc" ) return user1.salary - user2.salary;
-                                return user2.salary-user1.salary; 
-                            })
+                            // .filter( user => {
+                            //     if ( filter === "default" ) return true;
+                            //     return user.department === filter; 
+                            // })
+                            // .sort( ( user1, user2 ) => {
+                            //     if ( sorting === "default" ) return 0;
+                            //     if ( sorting === "asc" ) return user1.salary - user2.salary;
+                            //     return user2.salary-user1.salary; 
+                            // })
                             .map(item => (
                                 <TableItem user={item} key={item.id} onDeleteUser={handleDeleteUser} />
                             )) : (
