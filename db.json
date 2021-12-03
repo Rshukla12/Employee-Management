@@ -1,54 +1,56 @@
 {
   "profile": [
     {
-      "name": "Ravi Shukla",
-      "age": "21",
-      "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
-      "salary": "130000",
+      "name": "Ramesh",
+      "age": "22",
+      "address": "ABC",
+      "department": "management",
+      "salary": 120000,
       "maritalState": false,
       "profilePhoto": "",
+      "maritalStatus": true,
+      "id": 1
+    },
+    {
+      "name": "Rakesh",
+      "age": "32",
+      "address": "XYZ 23",
+      "department": "management",
+      "salary": 320000,
+      "maritalState": false,
+      "profilePhoto": "",
+      "maritalStatus": true,
+      "id": 3
+    },
+    {
+      "name": "Rakesh",
+      "age": "25",
+      "address": "ABX ",
       "department": "it",
+      "salary": 122000,
+      "maritalState": false,
+      "profilePhoto": "",
+      "id": 4
+    },
+    {
+      "name": "John",
+      "age": "24",
+      "address": "XYA",
+      "department": "resources",
+      "salary": 75000,
+      "maritalState": false,
+      "profilePhoto": "",
       "id": 5
     },
     {
-      "name": "Ravi Shukla",
-      "age": "21",
-      "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
-      "salary": "130000",
+      "name": "James",
+      "age": "27",
+      "address": "YAZ",
+      "department": "management",
+      "salary": 125000,
       "maritalState": false,
       "profilePhoto": "",
-      "department": "it",
-      "id": 11
-    },
-    {
-      "name": "Ravi Shukla",
-      "age": "22",
-      "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
-      "salary": "130000",
-      "maritalState": false,
-      "profilePhoto": "",
-      "department": "resources",
-      "id": 12
-    },
-    {
-      "name": "Ravi Shukla",
-      "age": "21",
-      "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
-      "salary": "130000",
-      "maritalState": false,
-      "profilePhoto": "",
-      "department": "it",
-      "id": 13
-    },
-    {
-      "name": "Ravi Shukla",
-      "age": "22",
-      "address": "124,Ashapuri Society-2, Bamroli Road,, Udhna",
-      "salary": "130000",
-      "maritalState": false,
-      "profilePhoto": "",
-      "department": "resources",
-      "id": 14
+      "id": 6
     }
   ]
 }

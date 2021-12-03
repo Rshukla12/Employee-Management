@@ -7,7 +7,7 @@ const intial = {
     age: "",
     address: "",
     department: "",
-    salary: "",
+    salary: 0,
     maritalState: false,
     profilePhoto: ""
 };
@@ -95,7 +95,7 @@ const Form = ({setIsUpdated}) => {
                     </div>
                     <div className={styles.inpRow} >
                         <label htmlFor="salary">Salary</label>
-                        <input type="text" onChange={handleFormUpdate} name="salary" value={formState.salary} required={true}/>
+                        <input type="number" onChange={handleFormUpdate} name="salary" value={formState.salary} required={true}/>
                     </div>
                     <div className={styles.inpRow} >
                         <label htmlFor="maritalStatus">Married</label>

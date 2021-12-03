@@ -20,7 +20,7 @@ const Table = ({isUpdated}) => {
     const fetchData = ({sorting, filter, page}) => {
         setIsLoading(true);
         const options = {
-            page: page,
+            _page: page,
             _limit: 5
         };
         if ( sorting !== "default" ) {
